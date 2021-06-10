@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Video } from './video.js';
+import { Menu } from './menu.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const VIDEOS = {
+  videoLael: 'https://www.youtube.com/embed/w13XvFnGIqY', 
+  videoJava : "https://www.youtube.com/embed/M6GV1b7JHF8",
+  videoDogPark : 'https://www.youtube.com/embed/0rJEZBcwcp0',
+};
 
-export default App;
+export class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      src: VIDEOS.videoLael
+    };
+    this.chooseVideo = this.chooseVideo.bind(this);
+  }
+  chooseVideo(newVideo){
+    this.setState({
+      src: VIDEOS[newVideo]
+    });
+  }
+
+    render(){
+      return (
+        <div>
+          <h1>React Video Player</h1>
+          <Menu chooseVideo={this.chooseVideo} />
+          <Video src={this.state.src} />
+        </div>
+      );
+    }
+  }
+
+export default App; 
