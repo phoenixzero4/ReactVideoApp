@@ -1,6 +1,8 @@
 import React from 'react';
 import { Video } from './video.js';
 import { Menu } from './menu.js';
+import './App.css';
+import './w3.css';
 
 const VIDEOS = {
   videoLael: 'https://www.youtube.com/embed/w13XvFnGIqY', 
@@ -12,7 +14,7 @@ export class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      src: VIDEOS.videoLael
+      src: VIDEOS.videoJava
     };
     this.chooseVideo = this.chooseVideo.bind(this);
   }
@@ -24,8 +26,8 @@ export class App extends React.Component{
 
     render(){
       return (
-        <div>
-          <h1>React Video Player</h1>
+        <div className='w3-display-middle'>
+          <h1 style={{ textAlign: "center" }} >React Video Player</h1>
           <Menu chooseVideo={this.chooseVideo} />
           <Video src={this.state.src} />
         </div>
